@@ -8,17 +8,16 @@ namespace Assets.BattleBots.Scripts
     public class BattleBotObject : MonoBehaviour
     {
         public BattleBot BattleBot;
-        public List<Armature> AttachedArmatureList;
-        public readonly int ArmatureSlots = 3;
 
-        private void Start()
+        public AttachedArmatureDictionary AttachedArmatureList;
+        public static int EquippableArmatureSlots = 3;
+
+        public AttachedArmorDictionary AttachedArmorList;
+        public static int EquippableArmorSlots = 2;
+
+        public void Awake()
         {
             BattleBot = new BattleBot();
-            AttachedArmatureList = new List<Armature>();
-            for (int i = 0; i < ArmatureSlots; i++)
-            {
-                AttachedArmatureList.Add(ArmatureGenerator.GenerateArmature());
-            }
         }
     }
 } 

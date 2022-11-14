@@ -21,17 +21,17 @@ namespace Assets.BattleBots.Scripts
 
         private static int LengthOfDamageTypeEnum
         {
-            get { return Enum.GetNames(typeof(DamageType)).Length; }
+            get { return Enum.GetNames(typeof(ArmatureDamageType)).Length; }
         }
 
         public static Armature GenerateArmature()
         {
             ArmatureType newArmatureType = GenerateNewArmatureTypeAttribute();
             ArmatureRange newArmaturerange = GenerateArmatureRangeAttribute(newArmatureType);
-            ArmatureRarity newArmaturerarity = GenerateArmatureRarityAttribute();
+            ItemRarity newArmaturerarity = GenerateArmatureRarityAttribute();
             int newArmaturebaseDamage = GenerateBaseDamageAttribute(newArmaturerarity);
-            DamageType newArmatureDamageType = GenerateDamageTypeAttribute();
-            ArmatureSlotType newArmatureSlot = GenerateArmatureSlot(newArmatureType);
+            ArmatureDamageType newArmatureDamageType = GenerateDamageTypeAttribute();
+            ArmatureEquippedSlot newArmatureSlot = GenerateArmatureSlot(newArmatureType);
             string newArmatureName = GenerateArmatureName(newArmatureType, newArmatureDamageType, newArmatureSlot);
             int levelRequirement = GenerateLevelRequirement(newArmaturerarity);
             return new Armature (newArmatureName, newArmaturebaseDamage, levelRequirement, newArmatureType, newArmaturerange, newArmatureSlot, newArmatureDamageType, newArmaturerarity);
@@ -40,8 +40,8 @@ namespace Assets.BattleBots.Scripts
         private static ArmatureType GenerateNewArmatureTypeAttribute()
         {
             //May refactor when we can verify the random seed doesn't go outside our range.
-            ArmatureType returnType = ArmatureType.Default;
-            while (returnType == ArmatureType.Default)
+            ArmatureType returnType = ArmatureType.None;
+            while (returnType == ArmatureType.None)
             {
                 var randomValue = randomSeed.Next(0, LengthOfArmatureTypeEnum - 1);
                 switch (randomValue)
@@ -59,7 +59,7 @@ namespace Assets.BattleBots.Scripts
                         returnType = ArmatureType.Explosive;
                         break;
                     default:
-                        returnType = ArmatureType.Default;
+                        returnType = ArmatureType.None;
                         break;
                 }
             }
@@ -99,77 +99,77 @@ namespace Assets.BattleBots.Scripts
         }
         #endregion
 
-        private static ArmatureRarity GenerateArmatureRarityAttribute()
+        private static ItemRarity GenerateArmatureRarityAttribute()
         {
             var seed = randomSeed.Next(0, 100);
             if (seed >= 0 && seed < 50)
-                return ArmatureRarity.Common;
+                return ItemRarity.Common;
             else if (seed >= 50 && seed < 70)
-                return ArmatureRarity.Uncommon;
+                return ItemRarity.Uncommon;
             else if (seed >= 70 && seed < 85)
-                return ArmatureRarity.Rare;
+                return ItemRarity.Rare;
             else if (seed >= 85 && seed < 93)
-                return ArmatureRarity.Exceptional;
+                return ItemRarity.Exceptional;
             else if (seed >= 93 && seed < 99)
-                return ArmatureRarity.Exotic;
+                return ItemRarity.Exotic;
             else
-                return ArmatureRarity.Legendary;
+                return ItemRarity.Legendary;
         }
 
-        private static int GenerateBaseDamageAttribute(ArmatureRarity rarity)
+        private static int GenerateBaseDamageAttribute(ItemRarity rarity)
         {
             var seed = randomSeed.Next(5, 15);
             return seed * ((int)rarity + 1);
         }
 
-        private static DamageType GenerateDamageTypeAttribute()
+        private static ArmatureDamageType GenerateDamageTypeAttribute()
         {
             switch(randomSeed.Next(0, LengthOfDamageTypeEnum - 1))
             {
                 case 0:
-                    return DamageType.Fire;
+                    return ArmatureDamageType.Fire;
                 case 1:
-                    return DamageType.Ice;
+                    return ArmatureDamageType.Ice;
                 case 2:
-                    return DamageType.Energy;
+                    return ArmatureDamageType.Energy;
                 case 3:
-                    return DamageType.Void;
+                    return ArmatureDamageType.Void;
                 case 4:
-                    return DamageType.Nano;
+                    return ArmatureDamageType.Nano;
                 default:
-                    return DamageType.Fire;
+                    return ArmatureDamageType.Fire;
             }
         }
 
-        private static ArmatureSlotType GenerateArmatureSlot(ArmatureType newArmatureType)
+        private static ArmatureEquippedSlot GenerateArmatureSlot(ArmatureType newArmatureType)
         {
             if (newArmatureType == ArmatureType.Melee)
-                return ArmatureSlotType.Arm;
+                return ArmatureEquippedSlot.Arm;
             else if(newArmatureType == ArmatureType.Gun)
             {
-                return ArmatureSlotType.Arm;
+                return ArmatureEquippedSlot.Arm;
             }
-            return ArmatureSlotType.Head;
+            return ArmatureEquippedSlot.Head;
         }
         #region Name Generation
-        private static string GenerateArmatureName(ArmatureType newArmatureType, DamageType newArmatureDamageType, ArmatureSlotType newArmatureSlot)
+        private static string GenerateArmatureName(ArmatureType newArmatureType, ArmatureDamageType newArmatureDamageType, ArmatureEquippedSlot newArmatureSlot)
         {
             string returnString = "";
             switch(newArmatureDamageType)
             {
-                case DamageType.Fire:
+                case ArmatureDamageType.Fire:
                     returnString += "Fire";
                     break;
-                case DamageType.Ice:
+                case ArmatureDamageType.Ice:
                     returnString += "Icy";
                     break;
-                case DamageType.Energy:
+                case ArmatureDamageType.Energy:
                     returnString += "Raging";
                     break;
-                case DamageType.Void:
+                case ArmatureDamageType.Void:
                     returnString += "Void";
                     break;
-                case DamageType.Nano:
+                case ArmatureDamageType.Nano:
                     returnString += "Nano";
                     break;
             }
@@ -223,9 +223,9 @@ namespace Assets.BattleBots.Scripts
         }
         #endregion
 
-        private static int GenerateLevelRequirement(ArmatureRarity newArmaturerarity)
+        private static int GenerateLevelRequirement(ItemRarity newArmaturerarity)
         {
-            return 10 * (1 + ((int)newArmaturerarity)) + randomSeed.Next(0, 10);
+            return 10 * ( 1 + ((int)newArmaturerarity)) + randomSeed.Next(0,10);
         }
     }
 }
