@@ -64,8 +64,12 @@ namespace Assets.BattleBots.Scripts
         public DamageType DamageType;
         public ArmatureRarity Rarity;
 
+        [SerializeField]
+        private int levelRequirement;
+
         public int BaseDamage { get => baseDamage; set => baseDamage = value; }
         public string ArmatureName { get => armatureName; set => armatureName = value; }
+        public string LevelRequirement { get => armatureName; }
 
         public Armature()
         {
@@ -77,10 +81,11 @@ namespace Assets.BattleBots.Scripts
             DamageType = DamageType.Default;
             Rarity = ArmatureRarity.Default;
         }
-        public Armature(string name, int baseDmg, ArmatureType type, ArmatureRange range, ArmatureSlotType slot, DamageType damageType, ArmatureRarity rarity)
+        public Armature(string name, int baseDmg, int levelRequired, ArmatureType type, ArmatureRange range, ArmatureSlotType slot, DamageType damageType, ArmatureRarity rarity)
         {
             armatureName = name;
             baseDamage = baseDmg;
+            levelRequirement = levelRequired;
             Type = type;
             Range = range;
             Slot = slot;

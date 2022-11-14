@@ -33,7 +33,8 @@ namespace Assets.BattleBots.Scripts
             DamageType newArmatureDamageType = GenerateDamageTypeAttribute();
             ArmatureSlotType newArmatureSlot = GenerateArmatureSlot(newArmatureType);
             string newArmatureName = GenerateArmatureName(newArmatureType, newArmatureDamageType, newArmatureSlot);
-            return new Armature (newArmatureName, newArmaturebaseDamage, newArmatureType, newArmaturerange, newArmatureSlot, newArmatureDamageType, newArmaturerarity);
+            int levelRequirement = GenerateLevelRequirement(newArmaturerarity);
+            return new Armature (newArmatureName, newArmaturebaseDamage, levelRequirement, newArmatureType, newArmaturerange, newArmatureSlot, newArmatureDamageType, newArmaturerarity);
         }
 
         private static ArmatureType GenerateNewArmatureTypeAttribute()
@@ -150,7 +151,7 @@ namespace Assets.BattleBots.Scripts
             }
             return ArmatureSlotType.Head;
         }
-
+        #region Name Generation
         private static string GenerateArmatureName(ArmatureType newArmatureType, DamageType newArmatureDamageType, ArmatureSlotType newArmatureSlot)
         {
             string returnString = "";
@@ -219,6 +220,12 @@ namespace Assets.BattleBots.Scripts
         private static string GenerateNameFlavorText()
         {
             return "";
+        }
+        #endregion
+
+        private static int GenerateLevelRequirement(ArmatureRarity newArmaturerarity)
+        {
+            return 10 * (1 + ((int)newArmaturerarity)) + randomSeed.Next(0, 10);
         }
     }
 }
