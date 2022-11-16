@@ -9,10 +9,10 @@ namespace Assets.BattleBots.Scripts
     {
         public BattleBot BattleBot;
 
-        public AttachedArmatureDictionary AttachedArmatureList;
+        //public AttachedArmatureDictionary AttachedArmatureList;
         public static int EquippableArmatureSlots = 3;
 
-        public AttachedArmorDictionary AttachedArmorList;
+        //public AttachedArmorDictionary AttachedArmorList;
         public static int EquippableArmorSlots = 2;
 
         public void Awake()

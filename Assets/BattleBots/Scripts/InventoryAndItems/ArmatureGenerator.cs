@@ -21,20 +21,28 @@ namespace Assets.BattleBots.Scripts
 
         private static int LengthOfDamageTypeEnum
         {
-            get { return Enum.GetNames(typeof(ArmatureDamageType)).Length; }
+            get { return Enum.GetNames(typeof(EquipmentElementalType)).Length; }
         }
 
         public static Armature GenerateArmature()
         {
             ArmatureType newArmatureType = GenerateNewArmatureTypeAttribute();
             ArmatureRange newArmaturerange = GenerateArmatureRangeAttribute(newArmatureType);
-            ItemRarity newArmaturerarity = GenerateArmatureRarityAttribute();
+            EquipmentRarity newArmaturerarity = GenerateArmatureRarityAttribute();
             int newArmaturebaseDamage = GenerateBaseDamageAttribute(newArmaturerarity);
-            ArmatureDamageType newArmatureDamageType = GenerateDamageTypeAttribute();
+            EquipmentElementalType newArmatureDamageType = GenerateDamageTypeAttribute();
             ArmatureEquippedSlot newArmatureSlot = GenerateArmatureSlot(newArmatureType);
             string newArmatureName = GenerateArmatureName(newArmatureType, newArmatureDamageType, newArmatureSlot);
-            int levelRequirement = GenerateLevelRequirement(newArmaturerarity);
-            return new Armature (newArmatureName, newArmaturebaseDamage, levelRequirement, newArmatureType, newArmaturerange, newArmatureSlot, newArmatureDamageType, newArmaturerarity);
+            int levelRequirement = GenerateLevelRequirement(newArmaturerarity, newArmaturebaseDamage, newArmatureDamageType);
+            return new Armature (newArmatureName, 
+                                 newArmaturebaseDamage, 
+                                 levelRequirement,
+                                 100,
+                                 newArmatureType, 
+                                 newArmaturerange, 
+                                 newArmatureSlot, 
+                                 newArmatureDamageType, 
+                                 newArmaturerarity);
         }
 
         private static ArmatureType GenerateNewArmatureTypeAttribute()
@@ -66,24 +74,24 @@ namespace Assets.BattleBots.Scripts
             return returnType;
         }
 
+        #region Range Generation
         private static ArmatureRange GenerateArmatureRangeAttribute(ArmatureType type)
         {
-            switch(type)
+            switch (type)
             {
                 case ArmatureType.Sniper:
                     return ArmatureRange.Long;
                 case ArmatureType.Melee:
                     return ArmatureRange.Close;
                 case ArmatureType.Gun:
-                    return GenerateGunRange();
+                    return GenerateDynamicRange();
                 case ArmatureType.Explosive:
-                    return GenerateGunRange();
+                    return GenerateDynamicRange();
                 default:
                     return ArmatureRange.Mid;
             }
         }
-        #region Range Helpers
-        private static ArmatureRange GenerateGunRange()
+        private static ArmatureRange GenerateDynamicRange()
         {
             switch(randomSeed.Next(0, LengthOfArmatureRangeEnum - 1)) 
             {
@@ -99,46 +107,44 @@ namespace Assets.BattleBots.Scripts
         }
         #endregion
 
-        private static ItemRarity GenerateArmatureRarityAttribute()
+        private static EquipmentRarity GenerateArmatureRarityAttribute()
         {
             var seed = randomSeed.Next(0, 100);
             if (seed >= 0 && seed < 50)
-                return ItemRarity.Common;
+                return EquipmentRarity.Common;
             else if (seed >= 50 && seed < 70)
-                return ItemRarity.Uncommon;
+                return EquipmentRarity.Uncommon;
             else if (seed >= 70 && seed < 85)
-                return ItemRarity.Rare;
+                return EquipmentRarity.Rare;
             else if (seed >= 85 && seed < 93)
-                return ItemRarity.Exceptional;
+                return EquipmentRarity.Exceptional;
             else if (seed >= 93 && seed < 99)
-                return ItemRarity.Exotic;
+                return EquipmentRarity.Exotic;
             else
-                return ItemRarity.Legendary;
+                return EquipmentRarity.Legendary;
         }
 
-        private static int GenerateBaseDamageAttribute(ItemRarity rarity)
+        private static int GenerateBaseDamageAttribute(EquipmentRarity rarity)
         {
-            var seed = randomSeed.Next(5, 15);
+            var seed = randomSeed.Next(EquipmentVariables.minBaseDamageValue, EquipmentVariables.maxBaseDamageValue);
             return seed * ((int)rarity + 1);
         }
 
-        private static ArmatureDamageType GenerateDamageTypeAttribute()
+        private static EquipmentElementalType GenerateDamageTypeAttribute()
         {
-            switch(randomSeed.Next(0, LengthOfDamageTypeEnum - 1))
-            {
-                case 0:
-                    return ArmatureDamageType.Fire;
-                case 1:
-                    return ArmatureDamageType.Ice;
-                case 2:
-                    return ArmatureDamageType.Energy;
-                case 3:
-                    return ArmatureDamageType.Void;
-                case 4:
-                    return ArmatureDamageType.Nano;
-                default:
-                    return ArmatureDamageType.Fire;
-            }
+            var seed = randomSeed.Next(0, 13);
+            if (seed < 4)
+                return EquipmentElementalType.None;
+            else if (seed < 6)
+                return EquipmentElementalType.Fire;
+            else if (seed < 9)
+                return EquipmentElementalType.Ice;
+            else if (seed < 11)
+                return EquipmentElementalType.Energy;
+            else if (seed < 12)
+                return EquipmentElementalType.Nano;
+            else
+                return EquipmentElementalType.Void;
         }
 
         private static ArmatureEquippedSlot GenerateArmatureSlot(ArmatureType newArmatureType)
@@ -151,26 +157,30 @@ namespace Assets.BattleBots.Scripts
             }
             return ArmatureEquippedSlot.Head;
         }
+
         #region Name Generation
-        private static string GenerateArmatureName(ArmatureType newArmatureType, ArmatureDamageType newArmatureDamageType, ArmatureEquippedSlot newArmatureSlot)
+        private static string GenerateArmatureName(ArmatureType newArmatureType, EquipmentElementalType newArmatureDamageType, ArmatureEquippedSlot newArmatureSlot)
         {
             string returnString = "";
+
+            returnString += string.Format("{0} ", ArmatureVariables.ArmatureProducerList[randomSeed.Next(0, ArmatureVariables.ArmatureProducerList.Count)]);
+
             switch(newArmatureDamageType)
             {
-                case ArmatureDamageType.Fire:
-                    returnString += "Fire";
+                case EquipmentElementalType.Fire:
+                    returnString += "Firey ";
                     break;
-                case ArmatureDamageType.Ice:
-                    returnString += "Icy";
+                case EquipmentElementalType.Ice:
+                    returnString += "Icy ";
                     break;
-                case ArmatureDamageType.Energy:
-                    returnString += "Raging";
+                case EquipmentElementalType.Energy:
+                    returnString += "Electrifying ";
                     break;
-                case ArmatureDamageType.Void:
-                    returnString += "Void";
+                case EquipmentElementalType.Void:
+                    returnString += "Void ";
                     break;
-                case ArmatureDamageType.Nano:
-                    returnString += "Nano";
+                case EquipmentElementalType.Nano:
+                    returnString += "Nano ";
                     break;
             }
 
@@ -199,22 +209,22 @@ namespace Assets.BattleBots.Scripts
 
         private static string GenerateMeleeWeaponName()
         {
-            return " " + ArmatureVariables.ArmatureMeleeWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureMeleeWeaponList.Count)];
+            return ArmatureVariables.ArmatureMeleeWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureMeleeWeaponList.Count)];
         }
 
         private static string GenerateGunWeaponName()
         {
-            return " " + ArmatureVariables.ArmatureGunWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureGunWeaponList.Count)];
+            return ArmatureVariables.ArmatureGunWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureGunWeaponList.Count)];
         }
 
         private static string GenerateSniperWeaponName()
         {
-            return " " + ArmatureVariables.ArmatureSniperWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureSniperWeaponList.Count)];
+            return ArmatureVariables.ArmatureSniperWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureSniperWeaponList.Count)];
         }
 
         private static string GenerateExplosiveWeaponName()
         {
-            return " " + ArmatureVariables.ArmatureExplosiveWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureExplosiveWeaponList.Count)];
+            return ArmatureVariables.ArmatureExplosiveWeaponList[randomSeed.Next(0, ArmatureVariables.ArmatureExplosiveWeaponList.Count)];
         }
 
         private static string GenerateNameFlavorText()
@@ -223,9 +233,37 @@ namespace Assets.BattleBots.Scripts
         }
         #endregion
 
-        private static int GenerateLevelRequirement(ItemRarity newArmaturerarity)
+        #region Level Generation
+        private static int GenerateLevelRequirement(EquipmentRarity newArmaturerarity, int newArmaturebaseDamage, EquipmentElementalType newArmatureDamageType)
         {
-            return 10 * ( 1 + ((int)newArmaturerarity)) + randomSeed.Next(0,10);
+            return 10 * (((int)newArmaturerarity)) 
+                + GenerateDamageLevelRequirement(newArmaturebaseDamage) 
+                + GenerateElementalTypeLevelRequirement(newArmatureDamageType);
         }
+
+        private static int GenerateDamageLevelRequirement(int newArmaturebaseDamage)
+        {
+            return newArmaturebaseDamage - EquipmentVariables.minBaseDamageValue;
+        }
+
+        private static int GenerateElementalTypeLevelRequirement(EquipmentElementalType newArmatureDamageType)
+        {
+            switch(newArmatureDamageType)
+            {
+                case EquipmentElementalType.Fire:
+                    return 1;
+                case EquipmentElementalType.Ice:
+                    return 1;
+                case EquipmentElementalType.Energy:
+                    return 2;
+                case EquipmentElementalType.Nano:
+                    return 3;
+                case EquipmentElementalType.Void:
+                    return 4;
+                default: 
+                    return 0;
+            }
+        }
+        #endregion
     }
 }

@@ -23,11 +23,15 @@ namespace Assets.BattleBots.Scripts
         [SerializeField]
         private int speed;
         [SerializeField]
-        private int meleePower;
+        private int strength;
         [SerializeField]
         private int focus;
         [SerializeField]
         private int level;
+        [SerializeField]
+        private Armature[] armatures;
+        [SerializeField]
+        private Armor[] armors;
 
         public string Name { get => botName; set => botName = value; }
 
@@ -39,7 +43,7 @@ namespace Assets.BattleBots.Scripts
 
         public int Accuracy { get => accuracy; set => accuracy = value; }
 
-        public int MeleePower { get => meleePower; set => meleePower = value; }
+        public int Strength { get => strength; set => strength = value; }
 
         public int Speed { get => speed; set => speed = value; }
 
@@ -47,17 +51,19 @@ namespace Assets.BattleBots.Scripts
 
         public int Level { get => level; set => level = value; }
 
-        public BattleBot(string name, int health, int armor, int energy, int accuracy, int meleePower, int speed, int focus,int level)
+        public BattleBot(string name, int health, int armor, int energy, int accuracy, int strength, int speed, int focus,int level)
         {
             botName = name;
             maxHealth = health;
             this.armor = armor;
             this.energy = energy;
             this.accuracy = accuracy;
-            this.meleePower = meleePower;
+            this.strength = strength;
             this.speed = speed;
             this.focus = focus;
             this.level = level;
+            armatures = new Armature[ArmatureVariables.numberOfArmatureSlots];
+            armors = new Armor[ArmorVariables.numberOfArmorSlots];
         }
 
         public BattleBot()
@@ -67,9 +73,50 @@ namespace Assets.BattleBots.Scripts
             armor = 0;
             energy = 50;
             accuracy = 50;
-            meleePower = 10;
+            strength = 10;
             speed = 10;
             focus = 10;
+            armatures = new Armature[ArmatureVariables.numberOfArmatureSlots];
+            armors = new Armor[ArmorVariables.numberOfArmorSlots];
+        }
+
+        public void UnEquipArmatureFromSlot(int index)
+        {
+            if (armatures[index] != null)
+                armatures[index] = null;
+        }
+
+        public void EquipArmatureToSlot(Armature armature)
+        {
+            var index = (int)armature.Slot;
+            armatures[index] = armature;
+        }
+
+        public void EquipArmorToSlot(Armor armor)
+        {
+            //var index = (int)Armor.Slot;
+            var index = 0;
+            if (armors[index] == null)
+                armors[index] = armor;
+        }
+
+        public void UnEquipArmorFromSlot(int index)
+        {
+            if(armors[index] != null)
+                armors[index] = null;
+        }
+
+        internal bool isArmatureSlotEmpty(Armature armature)
+        {
+            if (armatures[(int)armature.Slot].nameOfInventoryItem == null)
+                return true;
+
+            return false;
+        }
+
+        internal Armature GetEquippedArmature(int value)
+        {
+            return armatures[value];
         }
     }
 }
