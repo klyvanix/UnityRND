@@ -1210,7 +1210,7 @@ MonoBehaviour:
   PlayerBank: {fileID: 11400000, guid: a2171034d2edefd4d882bd8149032bd4, type: 2}
   BattleBotData: {fileID: 11400000, guid: a6090530ffac2784bb54f1223fffe44f, type: 2}
   EquipArmatureEvent: {fileID: 11400000, guid: 58fee990fade92340ae77c5cf28311c1, type: 2}
-  armatureIndex: 2
+  EquipArmorEvent: {fileID: 11400000, guid: c31219a1d8e6eb4468394aa539464259, type: 2}
 --- !u!1 &1523349035
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,43 +13,19 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   ArmatureList:
-  - name: Vectra Fabricators Firey Shooter
-    value: 100
-    baseDamage: 10
+  - name: Frostmoore Corporation Nano Blade
+    price: 100
+    baseDamage: 14
     visualSprite: {fileID: 0}
     isEquipped: 0
-    Type: 0
-    Range: 2
+    Type: 1
+    Range: 0
     Slot: 1
     Rarity: 0
     EquipmentType: 1
-    DamageType: 0
-    levelRequirement: 3
-  - name: Noral Industries Electrifying Pistol
-    value: 100
-    baseDamage: 9
-    visualSprite: {fileID: 0}
-    isEquipped: 0
-    Type: 0
-    Range: 1
-    Slot: 1
-    Rarity: 0
-    EquipmentType: 1
-    DamageType: 2
-    levelRequirement: 3
-  - name: Noral Industries Rocket
-    value: 100
-    baseDamage: 8
-    visualSprite: {fileID: 0}
-    isEquipped: 0
-    Type: 3
-    Range: 1
-    Slot: 0
-    Rarity: 0
-    EquipmentType: 1
-    DamageType: 5
-    levelRequirement: 0
+    Element: 4
+    levelRequirement: 10
   ArmorList: []
   Slots: 0
-  ArmatureListIndex: 0
-  ArmorListIndex: 0
+  indexArmatureList: 0
+  indexArmorList: 0

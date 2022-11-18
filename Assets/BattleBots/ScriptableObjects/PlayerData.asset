@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBot:
     botName: 
-    maxHealth: 100
-    armor: 0
+    currentHealth: 0
+    currentArmorValue: 36
     energy: 50
     accuracy: 50
     speed: 10
@@ -25,7 +25,7 @@ MonoBehaviour:
     ArmatureSlots:
     - EquippedArmature:
         name: 
-        value: -1
+        price: -1
         baseDamage: -1
         visualSprite: {fileID: 0}
         isEquipped: 0
@@ -34,12 +34,14 @@ MonoBehaviour:
         Slot: 1
         Rarity: 0
         EquipmentType: 1
-        DamageType: 0
-        levelRequirement: 0
+        Element: 0
+        levelRequirement: -1
       SlotPosition: 0
+      isEmpty: 1
+      Image: {fileID: 0}
     - EquippedArmature:
         name: 
-        value: -1
+        price: -1
         baseDamage: -1
         visualSprite: {fileID: 0}
         isEquipped: 0
@@ -48,12 +50,14 @@ MonoBehaviour:
         Slot: 1
         Rarity: 0
         EquipmentType: 1
-        DamageType: 0
-        levelRequirement: 0
+        Element: 0
+        levelRequirement: -1
       SlotPosition: 1
+      isEmpty: 1
+      Image: {fileID: 0}
     - EquippedArmature:
         name: 
-        value: -1
+        price: -1
         baseDamage: -1
         visualSprite: {fileID: 0}
         isEquipped: 0
@@ -62,21 +66,38 @@ MonoBehaviour:
         Slot: 1
         Rarity: 0
         EquipmentType: 1
-        DamageType: 0
-        levelRequirement: 0
+        Element: 0
+        levelRequirement: -1
       SlotPosition: 2
-    armors:
-    - nameOfInventoryItem: 
-      itemValue: 0
-      Rarity: 0
-      EquipmentType: 0
-      visualSprite: {fileID: 0}
-      armorValue: 0
-      Slot: 0
-    - nameOfInventoryItem: 
-      itemValue: 0
-      Rarity: 0
-      EquipmentType: 0
-      visualSprite: {fileID: 0}
-      armorValue: 0
-      Slot: 0
+      isEmpty: 1
+      Image: {fileID: 0}
+    ArmorSlots:
+    - EquippedArmor:
+        name: 'Vector Defense Armor of Harmony '
+        armorValue: 17
+        price: 100
+        visualSprite: {fileID: 0}
+        isEquipped: 1
+        Rarity: 0
+        EquipmentType: 0
+        Element: 0
+        Slot: 0
+        levelRequirement: 15
+      SlotPosition: 0
+      isEmpty: 0
+      Image: {fileID: 0}
+    - EquippedArmor:
+        name: 'Vector Defense Reflector of Harmony '
+        armorValue: 19
+        price: 100
+        visualSprite: {fileID: 0}
+        isEquipped: 1
+        Rarity: 0
+        EquipmentType: 0
+        Element: 0
+        Slot: 1
+        levelRequirement: 19
+      SlotPosition: 1
+      isEmpty: 0
+      Image: {fileID: 0}
+  credits: 0
