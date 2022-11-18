@@ -12,10 +12,12 @@ namespace Assets.BattleBots.Scripts
     {
         [SerializeField]
         private string botName;
-        [SerializeField]
         private int maxHealth;
         [SerializeField]
-        private int armorValue;
+        private int currentHealth;
+        private int baseArmorValue;
+        [SerializeField]
+        private int currentArmorValue;
         [SerializeField]
         private int energy;
         [SerializeField]
@@ -32,29 +34,19 @@ namespace Assets.BattleBots.Scripts
         public ArmatureSlot[] ArmatureSlots;
         public ArmorSlot[] ArmorSlots;
 
-        public string Name { get => botName; set => botName = value; }
-
-        public int Health { get => maxHealth; set => maxHealth = value; }
-
-        public int Armor { get => armorValue; set => armorValue = value; }
-
-        public int Energy { get => energy; set => energy = value; }
-
-        public int Accuracy { get => accuracy; set => accuracy = value; }
-
-        public int Strength { get => strength; set => strength = value; }
-
-        public int Speed { get => speed; set => speed = value; }
-
-        public int Focus { get => focus; set => focus = value; }
-
-        public int Level { get => level; set => level = value; }
-
-        public BattleBot(string name, int health, int armor, int energy, int accuracy, int strength, int speed, int focus,int level)
+        public BattleBot(string name,
+                         int health,
+                         int armor,
+                         int energy,
+                         int accuracy,
+                         int strength,
+                         int speed,
+                         int focus,
+                         int level)
         {
             botName = name;
             maxHealth = health;
-            this.armorValue = armor;
+            this.baseArmorValue = armor;
             this.energy = energy;
             this.accuracy = accuracy;
             this.strength = strength;
@@ -69,7 +61,7 @@ namespace Assets.BattleBots.Scripts
         {
             level = 1;
             maxHealth = 100;
-            armorValue = 0;
+            baseArmorValue = 0;
             energy = 50;
             accuracy = 50;
             strength = 10;
@@ -94,13 +86,16 @@ namespace Assets.BattleBots.Scripts
 
                 ArmatureSlots[i] = new ArmatureSlot(armatureSlotPosition);
             }
+
             for(i = 0; i < ArmorVariables.numberOfArmorSlots; i++)
             {
                 ArmorSlotType armorSlotPosition = ArmorSlotType.None;
-                if (i == (int)ArmorSlotType.Arm)
-                    armorSlotPosition = ArmorSlotType.Arm;
                 if (i == (int)ArmorSlotType.Body)
                     armorSlotPosition = ArmorSlotType.Body;
+                if (i == (int)ArmorSlotType.Arm)
+                    armorSlotPosition = ArmorSlotType.Arm;
+
+                ArmorSlots[i] = new ArmorSlot(armorSlotPosition);
             }
         }
 
@@ -158,6 +153,16 @@ namespace Assets.BattleBots.Scripts
         {
             if (ArmorSlots[index] != null)
                 ArmorSlots[index].UnequipSlot();
+        }
+
+        public void UpdateArmor()
+        {
+            currentArmorValue = baseArmorValue;
+            foreach(var armor in ArmorSlots)
+            {
+                if(armor.EquippedArmor.armorValue > 0)
+                    currentArmorValue += armor.EquippedArmor.armorValue;
+            }
         }
     }
 }

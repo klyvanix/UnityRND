@@ -95,5 +95,6 @@ public class InventoryManager : MonoBehaviour
             BattleBotData.playerBot.UnEquipArmorFromSlot((int)armor.Slot);
             BattleBotData.playerBot.EquipArmorToSlot(armor);
         }
+        BattleBotData.playerBot.UpdateArmor();
     }
 }
