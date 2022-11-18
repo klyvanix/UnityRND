@@ -30,7 +30,7 @@ namespace Assets.BattleBots.Scripts
         private int level;
 
         public ArmatureSlot[] ArmatureSlots;
-        public Armor[] armors;
+        public ArmorSlot[] ArmorSlots;
 
         public string Name { get => botName; set => botName = value; }
 
@@ -62,7 +62,7 @@ namespace Assets.BattleBots.Scripts
             this.focus = focus;
             this.level = level;
             ArmatureSlots = new ArmatureSlot[ArmatureVariables.numberOfArmatureSlots];
-            armors = new Armor[ArmorVariables.numberOfArmorSlots];
+            ArmorSlots = new ArmorSlot[ArmorVariables.numberOfArmorSlots];
         }
 
         public BattleBot()
@@ -76,7 +76,7 @@ namespace Assets.BattleBots.Scripts
             speed = 10;
             focus = 10;
             ArmatureSlots = new ArmatureSlot[ArmatureVariables.numberOfArmatureSlots];
-            armors = new Armor[ArmorVariables.numberOfArmorSlots];
+            ArmorSlots = new ArmorSlot[ArmorVariables.numberOfArmorSlots];
         }
 
         public void InitializeSlots()
@@ -84,30 +84,34 @@ namespace Assets.BattleBots.Scripts
             int i;
             for(i = 0; i < ArmatureVariables.numberOfArmatureSlots; i++)
             {
-                ArmatureEquippedSlot slotPosition = ArmatureEquippedSlot.Unassigned;
+                ArmatureEquippedSlot armatureSlotPosition = ArmatureEquippedSlot.None;
                 if (i == (int)ArmatureEquippedSlot.Head)
-                    slotPosition = ArmatureEquippedSlot.Head;
+                    armatureSlotPosition = ArmatureEquippedSlot.Head;
                 if(i == (int)ArmatureEquippedSlot.Arm)
-                    slotPosition = ArmatureEquippedSlot.Arm;
+                    armatureSlotPosition = ArmatureEquippedSlot.Arm;
                 if (i == (int)ArmatureEquippedSlot.Special)
-                    slotPosition = ArmatureEquippedSlot.Special;
+                    armatureSlotPosition = ArmatureEquippedSlot.Special;
 
-                ArmatureSlots[i] = new ArmatureSlot(slotPosition);
+                ArmatureSlots[i] = new ArmatureSlot(armatureSlotPosition);
             }
             for(i = 0; i < ArmorVariables.numberOfArmorSlots; i++)
             {
-                ArmorEquippedSlot slotPosition = ArmorEquippedSlot.UnEquipped;
-                if (i == (int)ArmorEquippedSlot.Arm)
-                    slotPosition = ArmorEquippedSlot.Arm;
-                if (i == (int)ArmorEquippedSlot.Body)
-                    slotPosition = ArmorEquippedSlot.Body;
-                //ArmorS
+                ArmorSlotType armorSlotPosition = ArmorSlotType.None;
+                if (i == (int)ArmorSlotType.Arm)
+                    armorSlotPosition = ArmorSlotType.Arm;
+                if (i == (int)ArmorSlotType.Body)
+                    armorSlotPosition = ArmorSlotType.Body;
             }
         }
 
         public bool CheckIfArmatureSlotIsEmpty(int slotIndex)
         {
             return ArmatureSlots[slotIndex].IsEmpty;
+        }
+
+        public bool CheckIfArmorSlotIsEmpty(int slotIndex)
+        {
+            return ArmorSlots[slotIndex].IsEmpty;
         }
 
         public void UnEquipArmatureFromSlot(int index)
@@ -133,18 +137,27 @@ namespace Assets.BattleBots.Scripts
             ArmatureSlots[index].EquipSlot(armature);
         }
 
+        public Armor FetchArmorFromSlot(int index)
+        {
+            if (ArmorSlots[index] != null)
+            {
+                var armor = ArmorSlots[index].EquippedArmor;
+                armor.isEquipped = false;
+                return armor;
+            }
+            return null;
+        }
+
         public void EquipArmorToSlot(Armor armor)
         {
-            //var index = (int)Armor.Slot;
-            var index = 0;
-            if (armors[index] == null)
-                armors[index] = armor;
+            var index = (int)armor.Slot;
+            ArmorSlots[index].EquipSlot(armor);
         }
 
         public void UnEquipArmorFromSlot(int index)
         {
-            if(armors[index] != null)
-                armors[index] = null;
+            if (ArmorSlots[index] != null)
+                ArmorSlots[index].UnequipSlot();
         }
     }
 }

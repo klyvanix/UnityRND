@@ -8,7 +8,7 @@ public class ArmorSlot
     [SerializeField]
     public Armor EquippedArmor;
     [SerializeField]
-    private ArmorEquippedSlot SlotPosition;
+    private ArmorSlotType SlotPosition;
     [SerializeField]
     private bool isEmpty;
     [SerializeField]
@@ -20,10 +20,10 @@ public class ArmorSlot
     {
         isEmpty = true;
         EquippedArmor = null;
-        SlotPosition = ArmorEquippedSlot.UnEquipped;
+        SlotPosition = ArmorSlotType.None;
     }
 
-    public ArmorSlot(ArmorEquippedSlot slotPosition)
+    public ArmorSlot(ArmorSlotType slotPosition)
     {
         isEmpty = true;
         EquippedArmor = null;

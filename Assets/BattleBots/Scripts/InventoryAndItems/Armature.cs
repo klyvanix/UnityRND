@@ -10,7 +10,7 @@ namespace Assets.BattleBots.Scripts
     public class Armature
     {
         public string name;
-        public int value;
+        public int price;
         public int baseDamage;
         public Sprite visualSprite;
         public bool isEquipped;
@@ -19,7 +19,7 @@ namespace Assets.BattleBots.Scripts
         public ArmatureEquippedSlot Slot;
         public EquipmentRarity Rarity;
         public EquipmentType EquipmentType;
-        public EquipmentElementalType DamageType;
+        public EquipmentElementalType Element;
 
         [SerializeField]
         private int levelRequirement;
@@ -35,14 +35,14 @@ namespace Assets.BattleBots.Scripts
                         EquipmentRarity rarity)
         {
             this.name = name;
-            this.value = price;
+            this.price = price;
             Rarity = rarity;
             EquipmentType = EquipmentType.Armature;
             baseDamage = baseDmg;
             Type = type;
             Range = range;
             Slot = slot;
-            DamageType = damageType;
+            Element = damageType;
             levelRequirement = levelRequired;
             isEquipped = false;
         }
@@ -50,10 +50,11 @@ namespace Assets.BattleBots.Scripts
         public Armature()
         {
             name = "";
-            value = -1;
+            price = -1;
+            levelRequirement = -1;
+            baseDamage = -1;
             Rarity = EquipmentRarity.Common;
             EquipmentType = EquipmentType.Armature;
-            baseDamage = -1;
             Type = ArmatureType.None;
             Slot = ArmatureEquippedSlot.Arm;
         }
@@ -62,7 +63,7 @@ namespace Assets.BattleBots.Scripts
         {
             if (this.name != target.name)
                 return false;
-            if (this.value != target.value)
+            if (this.price != target.price)
                 return false;
             if (this.Rarity != target.Rarity)
                 return false;

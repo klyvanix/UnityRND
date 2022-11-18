@@ -16,5 +16,9 @@ public class BattleBotGameManagerInspectorGUI : Editor
         {
             BBGM.EquipmentList.ArmatureList.Add(ArmatureGenerator.GenerateArmature());
         }
+        if (GUILayout.Button("Generate Armor"))
+        {
+            BBGM.EquipmentList.ArmorList.Add(ArmorGenerator.GenerateArmor());
+        }
     }
 }

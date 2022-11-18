@@ -53,5 +53,14 @@ namespace Assets.BattleBots
                 ArmorList.RemoveAt(index);
         }
 
+        public void ResetInventory()
+        {
+            ArmatureList.Clear();
+            ArmorList.Clear();
+
+            Slots = 0;
+            indexArmatureList = 0;
+            indexArmorList = 0;
+        }
     }
 }

@@ -40,7 +40,7 @@ public class ArmatureSlot
     {
         isEmpty = true;
         EquippedArmature = null;
-        SlotPosition = ArmatureEquippedSlot.Unassigned;
+        SlotPosition = ArmatureEquippedSlot.None;
     }
     public ArmatureSlot(ArmatureEquippedSlot slotPosition)
     {

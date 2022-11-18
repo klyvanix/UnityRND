@@ -9,11 +9,26 @@ namespace Assets.BattleBots
     public class BattleBotData : ScriptableObject
     {
         public BattleBot playerBot;
+        [SerializeField]
+        private int credits;
+
+        public int Credits
+        {
+            get { return credits; }
+            set { credits = value; }
+        }
 
         public void ResetBotData()
         {
             playerBot = new BattleBot();
             playerBot.InitializeSlots();
+        }
+
+        public void ResetAll()
+        {
+            playerBot = new BattleBot();
+            playerBot.InitializeSlots();
+            credits = 0;
         }
     }
 }

@@ -255,9 +255,9 @@ namespace Assets.BattleBots.Scripts
                 case EquipmentElementalType.Ice:
                     return 1;
                 case EquipmentElementalType.Energy:
-                    return 2;
+                    return 1;
                 case EquipmentElementalType.Nano:
-                    return 3;
+                    return 4;
                 case EquipmentElementalType.Void:
                     return 4;
                 default: 

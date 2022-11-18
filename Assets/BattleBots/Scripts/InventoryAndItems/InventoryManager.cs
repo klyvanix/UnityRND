@@ -50,7 +50,8 @@ public class InventoryManager : MonoBehaviour
         //grab a reference to the armature from the player inventory we want to equip.
         //check whether there is an open slot on the player armature slots.
         //if there is no armature equipped in the slot equip the armature from the slot and remove it from your inventory.
-        //if there is an armature equipped in the slot remove the armature from the equipped slot and store it in inventory, then equip the armature into the slot.
+        //if there is an armature equipped in the slot remove the armature from the equipped slot and store it in inventory.
+        //equip the armature into the slot.
         if (PlayerInventory.indexArmatureList == -1)
             return;
 
@@ -72,6 +73,27 @@ public class InventoryManager : MonoBehaviour
 
     private void EquipArmorEvent_onEventTrigger()
     {
-        throw new NotImplementedException();
+        //grab a reference to the armor from the player inventory we want to equip.
+        //check whether there is an open slot on the player armor slots.
+        //if there is no armor equipped in the slot equip the armor from the slot and remove it from your inventory.
+        //if there is an armor equipped in the slot remove the armor from the equipped slot and store it in inventory.
+        //equip the armor into the slot.
+        if (PlayerInventory.indexArmorList == -1)
+            return;
+
+        var armor = PlayerInventory.ArmorList[PlayerInventory.indexArmorList];
+        if (BattleBotData.playerBot.CheckIfArmorSlotIsEmpty((int)armor.Slot))
+        {
+            BattleBotData.playerBot.EquipArmorToSlot(armor);
+            PlayerInventory.RemoveArmor(PlayerInventory.indexArmorList);
+        }
+        else
+        {
+            var newArmor = BattleBotData.playerBot.FetchArmorFromSlot((int)armor.Slot);
+            PlayerInventory.AddArmor(newArmor);
+            PlayerInventory.RemoveArmor(PlayerInventory.indexArmorList);
+            BattleBotData.playerBot.UnEquipArmorFromSlot((int)armor.Slot);
+            BattleBotData.playerBot.EquipArmorToSlot(armor);
+        }
     }
 }

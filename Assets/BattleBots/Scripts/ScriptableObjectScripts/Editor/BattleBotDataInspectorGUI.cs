@@ -13,7 +13,7 @@ public class BattleBotDataInspectorGUI : Editor
 
         var battleBotData = (BattleBotData)target;
 
-        if (GUILayout.Button("Test Button"))
+        if (GUILayout.Button("Reset Bot Data"))
         {
             battleBotData.ResetBotData();
         }

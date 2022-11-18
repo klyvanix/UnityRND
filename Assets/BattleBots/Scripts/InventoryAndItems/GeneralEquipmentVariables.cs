@@ -34,7 +34,7 @@ namespace Assets.BattleBots.Scripts
         Close,
         Mid,
         Long,
-        Unassigned
+        None
     }
 
     public enum ArmatureEquippedSlot
@@ -42,7 +42,7 @@ namespace Assets.BattleBots.Scripts
         Head = 0,
         Arm = 1,
         Special = 2,
-        Unassigned = 3
+        None = 3
     }
 
     public enum EquipmentElementalType
@@ -65,12 +65,13 @@ namespace Assets.BattleBots.Scripts
         Legendary
     }
 
-    public enum ArmorEquippedSlot
+    public enum ArmorSlotType
     {
         Body = 0,
         Arm = 1,
-        UnEquipped = 2
+        None = 2
     }
+
     public static class ArmatureVariables
     {
         public static int numberOfArmatureSlots = 3;
@@ -89,11 +90,20 @@ namespace Assets.BattleBots.Scripts
         public static int numberOfArmorSlots = 2;
         public static int armorIndex = -1;
         public static Armor armor;
+
+        public static List<string> ArmorProducerList = new List<string>() { "Arma Industries", "Defense Corp", "Shield Enterprises", "Noral Industries", "Vector Defense" };
+        public static List<string> ArmSlotTitles = new List<string>() { "Shield", "Buckler", "Reflector", "Paryor", "Aegis", "Screen" };
+        public static List<string> BodySlotTitles = new List<string>() { "Armor", "Screen", "Safeguard", "Defense" };
     }
 
     public static class EquipmentVariables
     {
         public static int minBaseDamageValue = 8;
         public static int maxBaseDamageValue = 15;
+
+        public static int minBaseArmorValue = 2;
+        public static int maxBaseArmorVlaue = 10;
+
+        public static List<string> FlavorText = new List<string> { "of Peace", "of Justice", "of the Jade Guard", "of Harmony", "of The Underground", "of Faith" };
     }
 }
