@@ -14,11 +14,21 @@ public class InventoryManagerInspectorGUI : Editor
 
         if(GUILayout.Button("Equip Random Armature To Random Slot"))
         {
-            var ArmatureIndex = InventoryManager.SelectRandomArmatureIndex();
-            ArmatureVariables.armatureIndex = ArmatureIndex;
-            //ArmatureVariables.armature = InventoryManager.PlayerInventory.ArmatureList[ArmatureIndex];
+            InventoryManager.PlayerInventory.indexArmatureList = InventoryManager.SelectRandomArmatureIndex();
             //Populate Data and then Raise the Event.
+            InventoryManager.Register();
             InventoryManager.EquipArmatureEvent.TriggerEvent();
+            InventoryManager.Unregister();
+        }
+
+        if (GUILayout.Button("Equip Random Armor To Random Slot"))
+        {
+            InventoryManager.PlayerInventory.indexArmorList = InventoryManager.SelectRandomArmorIndex();
+            //Populate Data and then Raise the Event.
+            InventoryManager.Register();
+            InventoryManager.EquipArmorEvent.TriggerEvent();
+            InventoryManager.Unregister();
+
         }
     }
 }

@@ -13,18 +13,36 @@ public class InventoryManager : MonoBehaviour
     public BattleBotData BattleBotData;
 
     public EventObject EquipArmatureEvent;
+    public EventObject EquipArmorEvent;
+
+    //public int armatureIndex;
 
     public int SelectRandomArmatureIndex()
     {
         if(PlayerInventory.ArmatureList.Count > 0)
             return UnityEngine.Random.Range(0, PlayerInventory.ArmatureList.Count);
-        else
-            return -1;
+
+        return -1;
     }
 
-    public void Awake()
+    public int SelectRandomArmorIndex()
+    {
+        if(PlayerInventory.ArmorList.Count > 0)
+            return UnityEngine.Random.Range(0, PlayerInventory.ArmorList.Count);
+
+        return -1;
+    }
+
+    public void Register()
     {
         EquipArmatureEvent.onEventTrigger += EquipArmatureEvent_onEventTrigger;
+        EquipArmorEvent.onEventTrigger += EquipArmorEvent_onEventTrigger;
+    }
+
+    public void Unregister()
+    {
+        EquipArmatureEvent.onEventTrigger -= EquipArmatureEvent_onEventTrigger;
+        EquipArmorEvent.onEventTrigger -= EquipArmorEvent_onEventTrigger;
     }
 
     private void EquipArmatureEvent_onEventTrigger()
@@ -33,18 +51,27 @@ public class InventoryManager : MonoBehaviour
         //check whether there is an open slot on the player armature slots.
         //if there is no armature equipped in the slot equip the armature from the slot and remove it from your inventory.
         //if there is an armature equipped in the slot remove the armature from the equipped slot and store it in inventory, then equip the armature into the slot.
+        if (PlayerInventory.indexArmatureList == -1)
+            return;
 
-        var armature = PlayerInventory.ArmatureList[ArmatureVariables.armatureIndex];
-        if (BattleBotData.playerBot.isArmatureSlotEmpty(armature))
+        var armature = PlayerInventory.ArmatureList[PlayerInventory.indexArmatureList];
+        if (BattleBotData.playerBot.CheckIfArmatureSlotIsEmpty((int)armature.Slot))
         {
-            PlayerInventory.RemoveArmature(ArmatureVariables.armatureIndex);
             BattleBotData.playerBot.EquipArmatureToSlot(armature);
+            PlayerInventory.RemoveArmature(PlayerInventory.indexArmatureList);
         }
         else
         {
-            var equippedArmature = BattleBotData.playerBot.GetEquippedArmature((int)armature.Slot);
-            PlayerInventory.AddArmature(equippedArmature);
+            var newArmature = BattleBotData.playerBot.FetchArmatureFromSlot((int)armature.Slot);
+            PlayerInventory.AddArmature(newArmature);
+            PlayerInventory.RemoveArmature(PlayerInventory.indexArmatureList);
+            BattleBotData.playerBot.UnEquipArmatureFromSlot((int)armature.Slot);
             BattleBotData.playerBot.EquipArmatureToSlot(armature);
         }
+    }
+
+    private void EquipArmorEvent_onEventTrigger()
+    {
+        throw new NotImplementedException();
     }
 }

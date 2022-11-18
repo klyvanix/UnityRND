@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.BattleBots.Scripts
 {
@@ -11,6 +12,12 @@ namespace Assets.BattleBots.Scripts
         Armor,
         Armature,
         Consumable
+    }
+
+    public enum EquipableItemType
+    {
+        Armor,
+        Armature
     }
 
     public enum ArmatureType
@@ -35,7 +42,7 @@ namespace Assets.BattleBots.Scripts
         Head = 0,
         Arm = 1,
         Special = 2,
-        UnEquipped = 3
+        Unassigned = 3
     }
 
     public enum EquipmentElementalType
@@ -70,10 +77,10 @@ namespace Assets.BattleBots.Scripts
         public static int armatureIndex = -1;
         public static Armature armature;
 
-        public static List<string> ArmatureMeleeWeaponList = new List<string>() { "Knuckles", "Blade", "Hammer", "Sword", "Spike", "Hand", "Carver", "Grinder"};
+        public static List<string> ArmatureMeleeWeaponList = new List<string>() { "Knuckles", "Blade", "Crusher", "Spike", "Hand", "Carver", "Grinder"};
         public static List<string> ArmatureGunWeaponList = new List<string>() { "Bolter", "Blaster", "Pistol", "Gun", "Shooter"};
-        public static List<string> ArmatureSniperWeaponList = new List<string>() { "Rifle", "Sniper",  "Cannon", "Ballista"};
-        public static List<string> ArmatureExplosiveWeaponList = new List<string>() { "Rocket", "Explosive"};
+        public static List<string> ArmatureSniperWeaponList = new List<string>() { "Rifle", "Sniper", "Cannon", "Ballista", "Ray"};
+        public static List<string> ArmatureExplosiveWeaponList = new List<string>() { "Rocket", "Cannon", "Launcher",  };
         public static List<string> ArmatureProducerList = new List<string>() { "Delta Wolves", "Frostmoore Corporation", "Vectra Fabricators", "Noral Industries" };
     }
 
