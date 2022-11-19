@@ -20,6 +20,8 @@ namespace Assets.BattleBots
         public int indexArmatureList;
         public int indexArmorList;
 
+        public Armature armature;
+
         //Inventory Manager would be responsible for checking whether there is room in the Inventory.
         public bool RoomInInventory
         {

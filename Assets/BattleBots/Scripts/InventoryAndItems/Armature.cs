@@ -10,16 +10,20 @@ namespace Assets.BattleBots.Scripts
     public class Armature
     {
         public string name;
+        public Sprite visualSprite;
+
+        [Header("Attributes")]
         public int price;
         public int baseDamage;
-        public Sprite visualSprite;
         public bool isEquipped;
         public ArmatureType Type;
         public ArmatureRange Range;
         public ArmatureEquippedSlot Slot;
         public EquipmentRarity Rarity;
-        public EquipmentType EquipmentType;
         public EquipmentElementalType Element;
+
+        [Header("Type")]
+        public EquipmentType EquipmentType;
 
         [SerializeField]
         private int levelRequirement;

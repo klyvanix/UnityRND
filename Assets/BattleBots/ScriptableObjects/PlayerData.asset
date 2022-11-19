@@ -15,7 +15,7 @@ MonoBehaviour:
   playerBot:
     botName: 
     currentHealth: 0
-    currentArmorValue: 36
+    currentArmorValue: 0
     energy: 50
     accuracy: 50
     speed: 10
@@ -25,79 +25,96 @@ MonoBehaviour:
     ArmatureSlots:
     - EquippedArmature:
         name: 
+        visualSprite: {fileID: 0}
         price: -1
         baseDamage: -1
-        visualSprite: {fileID: 0}
         isEquipped: 0
         Type: 4
         Range: 0
         Slot: 1
         Rarity: 0
-        EquipmentType: 1
         Element: 0
+        EquipmentType: 1
         levelRequirement: -1
       SlotPosition: 0
       isEmpty: 1
       Image: {fileID: 0}
     - EquippedArmature:
         name: 
+        visualSprite: {fileID: 0}
         price: -1
         baseDamage: -1
-        visualSprite: {fileID: 0}
         isEquipped: 0
         Type: 4
         Range: 0
         Slot: 1
         Rarity: 0
-        EquipmentType: 1
         Element: 0
+        EquipmentType: 1
         levelRequirement: -1
       SlotPosition: 1
       isEmpty: 1
       Image: {fileID: 0}
     - EquippedArmature:
         name: 
+        visualSprite: {fileID: 0}
         price: -1
         baseDamage: -1
-        visualSprite: {fileID: 0}
         isEquipped: 0
         Type: 4
         Range: 0
         Slot: 1
         Rarity: 0
-        EquipmentType: 1
         Element: 0
+        EquipmentType: 1
         levelRequirement: -1
       SlotPosition: 2
       isEmpty: 1
       Image: {fileID: 0}
     ArmorSlots:
     - EquippedArmor:
-        name: 'Vector Defense Armor of Harmony '
-        armorValue: 17
-        price: 100
+        name: 
         visualSprite: {fileID: 0}
-        isEquipped: 1
+        armorValue: -1
+        price: -1
+        isEquipped: 0
+        Element: 5
         Rarity: 0
+        Slot: 2
         EquipmentType: 0
-        Element: 0
-        Slot: 0
-        levelRequirement: 15
+        levelRequirement: -1
       SlotPosition: 0
-      isEmpty: 0
+      isEmpty: 1
       Image: {fileID: 0}
     - EquippedArmor:
-        name: 'Vector Defense Reflector of Harmony '
-        armorValue: 19
-        price: 100
+        name: 
         visualSprite: {fileID: 0}
-        isEquipped: 1
+        armorValue: -1
+        price: -1
+        isEquipped: 0
+        Element: 5
         Rarity: 0
+        Slot: 2
         EquipmentType: 0
-        Element: 0
-        Slot: 1
-        levelRequirement: 19
+        levelRequirement: -1
       SlotPosition: 1
-      isEmpty: 0
+      isEmpty: 1
       Image: {fileID: 0}
   credits: 0
+  Slot:
+    EquippedArmature:
+      name: 
+      visualSprite: {fileID: 0}
+      price: -1
+      baseDamage: -1
+      isEquipped: 0
+      Type: 4
+      Range: 0
+      Slot: 1
+      Rarity: 0
+      Element: 0
+      EquipmentType: 1
+      levelRequirement: -1
+    SlotPosition: 3
+    isEmpty: 1
+    Image: {fileID: 0}

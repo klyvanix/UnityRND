@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -33,6 +34,10 @@ namespace Assets.BattleBots.Scripts
 
         public ArmatureSlot[] ArmatureSlots;
         public ArmorSlot[] ArmorSlots;
+
+        public string Name { get { return botName; } }
+        public int CurrentHealth { get { return currentHealth; } }
+        public int CurrentArmor { get { return currentArmorValue; } }
 
         public BattleBot(string name,
                          int health,

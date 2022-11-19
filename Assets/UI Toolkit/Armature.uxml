@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="EquipmentSlotInfo" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-left; justify-content: center; color: rgb(253, 253, 253); background-color: rgba(0, 0, 0, 0); display: flex;">
+        <ui:GroupBox name="Row1" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+            <ui:Label text="The Name of the Equipment" display-tooltip-when-elided="true" name="EquipmentName" style="color: rgb(255, 255, 255); -unity-font-style: bold;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="Row2" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+            <ui:Label text="Level" display-tooltip-when-elided="true" name="LevelLabel" style="-unity-text-align: middle-left; color: rgb(248, 248, 248);" />
+            <ui:TextField picking-mode="Ignore" value="filler text" text="10" name="LevelTextBox" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: flex-start; -unity-text-align: middle-left; width: 21px;" />
+            <ui:Label text="Base Damage" display-tooltip-when-elided="true" name="DamageLabel" style="-unity-text-align: middle-left; color: rgb(255, 156, 143);" />
+            <ui:TextField picking-mode="Ignore" value="filler text" text="100" name="LevelTextBox" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: flex-start; -unity-text-align: middle-left; width: 30px; visibility: visible;" />
+        </ui:GroupBox>
+        <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; visibility: visible; overflow: hidden; display: none;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

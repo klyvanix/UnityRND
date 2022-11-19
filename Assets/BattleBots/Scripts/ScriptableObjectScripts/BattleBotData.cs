@@ -12,6 +12,8 @@ namespace Assets.BattleBots
         [SerializeField]
         private int credits;
 
+        public ArmatureSlot Slot;
+
         public int Credits
         {
             get { return credits; }

@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/UI%20Toolkit/Armature.uss?fileID=7433441132597879392&amp;guid=ecf981e381a217c4a8f2f5f1c82a67f7&amp;type=3#Armature" />
+    <ui:GroupBox>
+        <ui:GroupBox style="flex-direction: row;">
+            <ui:VisualElement name="SlotImageBackground" style="background-image: none; width: 48px; height: 48px; background-color: rgb(255, 255, 255); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-direction: row; align-items: center; justify-content: center; position: relative; flex-basis: auto; flex-wrap: nowrap; flex-shrink: initial; flex-grow: 0;">
+                <ui:VisualElement name="SlotImage" style="background-image: url(&apos;project://database/Assets/BattleBots/Art/Images/SMG.png?fileID=21300000&amp;guid=d994c977ea8f8c9478ab1a2ee7c54c77&amp;type=3#SMG&apos;); width: 48px; height: 48px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:GroupBox name="EquipmentSlotInfo" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-left; justify-content: center; color: rgb(253, 253, 253); background-color: rgba(0, 0, 0, 0); display: flex;">
+                <ui:GroupBox name="Row1" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:Label text="The Name of the Equipment" display-tooltip-when-elided="true" name="EquipmentName" style="color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="Row2" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:Label text="Level" display-tooltip-when-elided="true" name="LevelLabel" style="-unity-text-align: middle-left; color: rgb(248, 248, 248);" />
+                    <ui:TextField picking-mode="Ignore" value="filler text" text="10" name="LevelTextBox" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: flex-start; -unity-text-align: middle-left; width: 21px;" />
+                    <ui:Label text="Base Damage" display-tooltip-when-elided="true" name="DamageLabel" style="-unity-text-align: middle-left; color: rgb(255, 156, 143);" />
+                    <ui:TextField picking-mode="Ignore" value="filler text" text="100" name="LevelTextBox" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: flex-start; -unity-text-align: middle-left; width: 30px; visibility: visible;" />
+                </ui:GroupBox>
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; visibility: visible; overflow: hidden; display: none;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" />
+                    <ui:Label text="Label" display-tooltip-when-elided="true" />
+                    <ui:Label text="Label" display-tooltip-when-elided="true" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="EmptySlot" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-left; justify-content: center; color: rgb(253, 253, 253); background-color: rgba(0, 0, 0, 0); display: none;">
+                <ui:GroupBox name="Row1" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:Label text="Empty" display-tooltip-when-elided="true" name="EquipmentName" style="color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

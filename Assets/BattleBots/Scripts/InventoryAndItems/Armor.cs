@@ -11,14 +11,18 @@ namespace Assets.BattleBots.Scripts
     public class Armor
     {
         public string name;
+        public Sprite visualSprite;
+
+        [Header("Attributes")]
         public int armorValue;
         public int price;
-        public Sprite visualSprite;
         public bool isEquipped;
-        public EquipmentRarity Rarity;
-        public EquipmentType EquipmentType;
         public EquipmentElementalType Element;
+        public EquipmentRarity Rarity;
         public ArmorSlotType Slot;
+
+        [Header("Type")]
+        public EquipmentType EquipmentType;
 
         [SerializeField]
         private int levelRequirement;
