@@ -17,10 +17,10 @@ namespace Assets.BattleBots
         //public List<Consumable> ConsumableList;
         public int Slots;
 
-        public int indexArmatureList;
-        public int indexArmorList;
-
         public Armature armature;
+        public Armor armor;
+        public int replacementArmatureIndex;
+        public int replacementArmorIndex;
 
         //Inventory Manager would be responsible for checking whether there is room in the Inventory.
         public bool RoomInInventory
@@ -61,8 +61,8 @@ namespace Assets.BattleBots
             ArmorList.Clear();
 
             Slots = 0;
-            indexArmatureList = 0;
-            indexArmorList = 0;
+            replacementArmatureIndex = 0;
+            replacementArmorIndex = 0;
         }
     }
 }

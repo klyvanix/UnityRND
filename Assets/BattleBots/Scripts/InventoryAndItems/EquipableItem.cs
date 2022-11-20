@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Assets.BattleBots.Scripts
 {
-    public abstract class EquipableItem
+    public abstract class InventoryItem : ScriptableObject
     {
-        public string nameOfInventoryItem;
+        public string itemName;
         public int itemValue;
         public EquipmentRarity Rarity;
         public EquipmentType EquipmentType;

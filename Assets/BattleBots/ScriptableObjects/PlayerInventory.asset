@@ -13,32 +13,32 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   ArmatureList:
-  - name: 
+  - name: Frostmoore Corporation Icy Cannon
     visualSprite: {fileID: 0}
-    price: 0
-    baseDamage: 0
+    price: 100
+    baseDamage: 44
     isEquipped: 0
-    Type: 0
-    Range: 0
+    Type: 2
+    Range: 2
+    Slot: 0
+    Rarity: 3
+    Element: 1
+    EquipmentType: 1
+    levelRequirement: 67
+  - name: Noral Industries Icy Ray
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 13
+    isEquipped: 0
+    Type: 2
+    Range: 2
     Slot: 0
     Rarity: 0
-    Element: 0
-    EquipmentType: 0
-    levelRequirement: 0
-  ArmorList:
-  - name: 
-    visualSprite: {fileID: 0}
-    armorValue: 0
-    price: 0
-    isEquipped: 0
-    Element: 0
-    Rarity: 0
-    Slot: 0
-    EquipmentType: 0
-    levelRequirement: 0
+    Element: 1
+    EquipmentType: 1
+    levelRequirement: 6
+  ArmorList: []
   Slots: 0
-  indexArmatureList: 0
-  indexArmorList: 0
   armature:
     name: 
     visualSprite: {fileID: 0}
@@ -52,3 +52,16 @@ MonoBehaviour:
     Element: 0
     EquipmentType: 1
     levelRequirement: -1
+  armor:
+    name: 
+    visualSprite: {fileID: 0}
+    armorValue: -1
+    price: -1
+    isEquipped: 0
+    Element: 5
+    Rarity: 0
+    Slot: 2
+    EquipmentType: 0
+    levelRequirement: -1
+  replacementArmatureIndex: 0
+  replacementArmorIndex: 0

@@ -8,14 +8,13 @@ using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviour
 {
+    [Header("PlayerData")]
     public Inventory PlayerInventory;
     public Inventory PlayerBank;
     public BattleBotData BattleBotData;
-
+    [Header ("Events")]
     public EventObject EquipArmatureEvent;
     public EventObject EquipArmorEvent;
-
-    //public int armatureIndex;
 
     public int SelectRandomArmatureIndex()
     {
@@ -52,20 +51,20 @@ public class InventoryManager : MonoBehaviour
         //if there is no armature equipped in the slot equip the armature from the slot and remove it from your inventory.
         //if there is an armature equipped in the slot remove the armature from the equipped slot and store it in inventory.
         //equip the armature into the slot.
-        if (PlayerInventory.indexArmatureList == -1)
+        if (PlayerInventory.replacementArmatureIndex == -1)
             return;
 
-        var armature = PlayerInventory.ArmatureList[PlayerInventory.indexArmatureList];
+        var armature = PlayerInventory.ArmatureList[PlayerInventory.replacementArmatureIndex];
         if (BattleBotData.playerBot.CheckIfArmatureSlotIsEmpty((int)armature.Slot))
         {
             BattleBotData.playerBot.EquipArmatureToSlot(armature);
-            PlayerInventory.RemoveArmature(PlayerInventory.indexArmatureList);
+            PlayerInventory.RemoveArmature(PlayerInventory.replacementArmatureIndex);
         }
         else
         {
             var newArmature = BattleBotData.playerBot.FetchArmatureFromSlot((int)armature.Slot);
             PlayerInventory.AddArmature(newArmature);
-            PlayerInventory.RemoveArmature(PlayerInventory.indexArmatureList);
+            PlayerInventory.RemoveArmature(PlayerInventory.replacementArmatureIndex);
             BattleBotData.playerBot.UnEquipArmatureFromSlot((int)armature.Slot);
             BattleBotData.playerBot.EquipArmatureToSlot(armature);
         }
@@ -78,20 +77,20 @@ public class InventoryManager : MonoBehaviour
         //if there is no armor equipped in the slot equip the armor from the slot and remove it from your inventory.
         //if there is an armor equipped in the slot remove the armor from the equipped slot and store it in inventory.
         //equip the armor into the slot.
-        if (PlayerInventory.indexArmorList == -1)
+        if (PlayerInventory.replacementArmorIndex == -1)
             return;
 
-        var armor = PlayerInventory.ArmorList[PlayerInventory.indexArmorList];
+        var armor = PlayerInventory.ArmorList[PlayerInventory.replacementArmorIndex];
         if (BattleBotData.playerBot.CheckIfArmorSlotIsEmpty((int)armor.Slot))
         {
             BattleBotData.playerBot.EquipArmorToSlot(armor);
-            PlayerInventory.RemoveArmor(PlayerInventory.indexArmorList);
+            PlayerInventory.RemoveArmor(PlayerInventory.replacementArmorIndex);
         }
         else
         {
             var newArmor = BattleBotData.playerBot.FetchArmorFromSlot((int)armor.Slot);
             PlayerInventory.AddArmor(newArmor);
-            PlayerInventory.RemoveArmor(PlayerInventory.indexArmorList);
+            PlayerInventory.RemoveArmor(PlayerInventory.replacementArmorIndex);
             BattleBotData.playerBot.UnEquipArmorFromSlot((int)armor.Slot);
             BattleBotData.playerBot.EquipArmorToSlot(armor);
         }
