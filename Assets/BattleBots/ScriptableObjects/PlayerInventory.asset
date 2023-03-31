@@ -13,31 +13,131 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   ArmatureList:
-  - name: Frostmoore Corporation Icy Cannon
+  - name: Noral Industries Cannon
     visualSprite: {fileID: 0}
     price: 100
-    baseDamage: 44
+    baseDamage: 24
+    isEquipped: 0
+    Type: 3
+    Range: 1
+    Slot: 0
+    Rarity: 1
+    Element: 5
+    EquipmentType: 1
+    levelRequirement: 26
+  - name: Vectra Fabricators Shooter
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 33
+    isEquipped: 0
+    Type: 0
+    Range: 1
+    Slot: 1
+    Rarity: 2
+    Element: 5
+    EquipmentType: 1
+    levelRequirement: 45
+  - name: Frostmoore Corporation Icy Gun
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 30
+    isEquipped: 0
+    Type: 0
+    Range: 0
+    Slot: 1
+    Rarity: 2
+    Element: 1
+    EquipmentType: 1
+    levelRequirement: 43
+  - name: Noral Industries Firey Carver
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 9
+    isEquipped: 0
+    Type: 1
+    Range: 0
+    Slot: 1
+    Rarity: 0
+    Element: 0
+    EquipmentType: 1
+    levelRequirement: 2
+  - name: Vectra Fabricators Gun
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 22
+    isEquipped: 0
+    Type: 0
+    Range: 1
+    Slot: 1
+    Rarity: 1
+    Element: 5
+    EquipmentType: 1
+    levelRequirement: 24
+  - name: Vectra Fabricators Void Cannon
+    visualSprite: {fileID: 0}
+    price: 100
+    baseDamage: 26
     isEquipped: 0
     Type: 2
     Range: 2
     Slot: 0
-    Rarity: 3
-    Element: 1
+    Rarity: 1
+    Element: 3
     EquipmentType: 1
-    levelRequirement: 67
-  - name: Noral Industries Icy Ray
+    levelRequirement: 32
+  - name: Vectra Fabricators Rifle
     visualSprite: {fileID: 0}
     price: 100
-    baseDamage: 13
+    baseDamage: 8
     isEquipped: 0
     Type: 2
     Range: 2
     Slot: 0
     Rarity: 0
-    Element: 1
+    Element: 5
     EquipmentType: 1
-    levelRequirement: 6
-  ArmorList: []
+    levelRequirement: 0
+  ArmorList:
+  - name: 'Defense Corp Buckler of Peace '
+    visualSprite: {fileID: 0}
+    armorValue: 17
+    price: 100
+    isEquipped: 0
+    Element: 0
+    Rarity: 0
+    Slot: 1
+    EquipmentType: 0
+    levelRequirement: 15
+  - name: 'Arma Industries Screen of Justice '
+    visualSprite: {fileID: 0}
+    armorValue: 24
+    price: 100
+    isEquipped: 0
+    Element: 0
+    Rarity: 4
+    Slot: 1
+    EquipmentType: 0
+    levelRequirement: 63
+  - name: 'Shield Enterprises Reflector of Harmony '
+    visualSprite: {fileID: 0}
+    armorValue: 26
+    price: 100
+    isEquipped: 0
+    Element: 0
+    Rarity: 4
+    Slot: 1
+    EquipmentType: 0
+    levelRequirement: 68
+  - name: 'Shield Enterprises Armor of Harmony '
+    visualSprite: {fileID: 0}
+    armorValue: 18
+    price: 100
+    isEquipped: 0
+    Element: 0
+    Rarity: 2
+    Slot: 0
+    EquipmentType: 0
+    levelRequirement: 37
   Slots: 0
   armature:
     name: 
@@ -63,5 +163,5 @@ MonoBehaviour:
     Slot: 2
     EquipmentType: 0
     levelRequirement: -1
-  replacementArmatureIndex: 0
-  replacementArmorIndex: 0
+  replacementArmatureIndex: 2
+  replacementArmorIndex: 4
